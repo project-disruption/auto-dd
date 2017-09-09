@@ -1,3 +1,16 @@
+## auto dd
+
+1. After yarn install create a .credentials folder with your privatekey.pem and xero-config.json file
+
+```js
+{
+    "userAgent" : "asdfds",
+    "consumerKey": "PUT KEY HERE",
+    "consumerSecret": "PUT SECRET HERE",
+    "privateKeyPath": "privatekey.pem"
+}
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
