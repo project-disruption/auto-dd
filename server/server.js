@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3001
+const cors = require('cors')
+
+app.use(cors())
 
 const xero = require('xero-node')
 const fs = require('fs')
@@ -13,7 +16,7 @@ if (config.privateKeyPath && !config.privateKey) {
 
 const xeroClient = new xero.PrivateApplication(config)
 
-app.get('/', (req, res) => {
+app.get('/invoices', (req, res) => {
   xeroClient.core.invoices.getInvoices()
     .then((invoices) => {
       res.send(invoices)
