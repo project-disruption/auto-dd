@@ -54,7 +54,7 @@ const yAxis = d3AxisLeft()
 
     // Create a line path of for our data.
   const linePath = sparkLine(data);
-  
+
   const circlePoints = data.map(datum => {
     return {
       total: datum.Total,

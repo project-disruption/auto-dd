@@ -24,22 +24,24 @@
   stroke-width: 2;
 }
 
-.scatter {
-  position: relative;
-  left: 100px;
+.container > .contentContainer .scatter {
+  position: absolute;
+  left: 200px;
 }
+
+
+.container > .contentContainer .line {
+  position: absolute;
+  left: 200px;
+}
+
 
 .container > .contentContainer .yAxis {
   font-size: 8px;
-  width: 200px;
-  padding: 100px;
-  left: 100px;
+  width: 400px;
+  color: blue;
 }
 
-.chart {
-  position: relative;
-  left: 40px;
-}
 
 .domain {
   margin: 100px;

@@ -44,13 +44,13 @@ class App extends Component {
         })} */}
         <p>{this.state.date}</p>
         <p>{this.state.total}</p>
-        <TimeSeriesPlot 
+        <TimeSeriesPlot
           data={this.state.invoices}
           height={800}
-          margin={20}
+          margin={100}
           selectX={datum => moment(datum.Date).toDate()}
           selectY={datum => datum.Total}
-          width={1000}
+          width={800}
           setTooltip={this.setTooltip}
         />
       </div>
