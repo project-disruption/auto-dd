@@ -12,6 +12,7 @@
     "superagent": "^3.6.0",
     "xero-node": "^2.6.0"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

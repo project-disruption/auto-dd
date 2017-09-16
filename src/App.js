@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   componentDidMount () {
-    request.get('http://localhost:3001/invoices')
+    request.get('/invoices')
       .then((response) => {
         this.setState({ invoices: response.body })
       })
