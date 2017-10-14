@@ -1,10 +1,10 @@
 import React from 'react'
-import { extent as d3ArrayExtent } from 'd3-array';
+import { max as d3ArrayMax, extent as d3ArrayExtent} from 'd3-array'
 import {
   scaleLinear as d3ScaleLinear,
   scaleTime as d3ScaleTime,
 } from 'd3-scale';
-import { line as d3Line } from 'd3-shape';
+import { line as d3Line, curveCatmullRom } from 'd3-shape';
 import {
   axisBottom as d3AxisBottom,
   axisLeft as d3AxisLeft,
@@ -12,7 +12,6 @@ import {
 import tip from 'd3-tip'
 import { select as d3Select } from 'd3-selection';
 import SVGWithMargin from './svg';
-import ReactTooltip from 'react-tooltip'
 import './TimeSeriesPlot.css'
 
 export default class TimeSeriesPlot extends React.Component {
@@ -29,7 +28,7 @@ export default class TimeSeriesPlot extends React.Component {
   // Our y axis should just have a linear scale.
   // Our y domain will be the extent of y values (numbers) in our data set.
   const yScale = d3ScaleLinear()
-    .domain(d3ArrayExtent(data, selectY))
+  .domain([0, d3ArrayMax(data, selectY)])
     .range([height, 0]);
     console.log(d3ArrayExtent(data, selectY))
 
@@ -50,7 +49,8 @@ const yAxis = d3AxisLeft()
   // Create a d3Line factory for our scales.
   const sparkLine = d3Line()
     .x(selectScaledX)
-    .y(selectScaledY);
+    .y(selectScaledY)
+    .curve(curveCatmullRom.alpha(0.5));
 
     // Create a line path of for our data.
   const linePath = sparkLine(data);
@@ -62,11 +62,11 @@ const yAxis = d3AxisLeft()
       x: selectScaledX(datum),
       y: selectScaledY(datum),
     }
+
   });
 
   return (
     <div>
-      <ReactTooltip place="top" type="dark" effect="float" id="test"/>
       <SVGWithMargin
       className="container chart"
       contentContainerBackgroundRectClassName="contentContainerBackgroundRect"
