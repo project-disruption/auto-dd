@@ -35,15 +35,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        {/* {this.state.invoices.map((invoice) => {
-          return (
-            <div key={invoice.InvoiceID}>
-              <p>Type: {moment(invoice.Date).format("YYYY-MM-DD")}</p>
-            </div>
-          )
-        })} */}
-        <p>{this.state.date}</p>
-        <p>{this.state.total}</p>
+        
+        <p>{this.state.date}</p> <p>{this.state.total}</p>
         <TimeSeriesPlot
           data={this.state.invoices}
           height={800}
