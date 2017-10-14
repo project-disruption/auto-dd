@@ -10,14 +10,21 @@ class App extends Component {
 
   state = {
     invoices: [],
+    incomeByMonth: [],
     total: null,
     date: null
   }
+
+
 
   componentDidMount () {
     request.get('/invoices')
       .then((response) => {
         this.setState({ invoices: response.body })
+      })
+    request.get('/profitandlossbyline?fromDate=2016-09-01&toDate=2017-03-31&line=Income')
+      .then((response) => {
+        this.setState({ incomeByMonth: response.body })
       })
   }
 
@@ -50,6 +57,15 @@ class App extends Component {
           margin={100}
           selectX={datum => moment(datum.Date).toDate()}
           selectY={datum => datum.Total}
+          width={800}
+          setTooltip={this.setTooltip}
+        />
+        <TimeSeriesPlot
+          data={this.state.incomeByMonth}
+          height={800}
+          margin={100}
+          selectX={datum => moment(datum.date).toDate()}
+          selectY={datum => datum.value}
           width={800}
           setTooltip={this.setTooltip}
         />
