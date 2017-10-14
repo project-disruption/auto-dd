@@ -35,7 +35,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        
+
         <p>{this.state.date}</p> <p>{this.state.total}</p>
         <TimeSeriesPlot
           data={this.state.invoices}
