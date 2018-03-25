@@ -24,6 +24,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "nodemon": "^1.12.0"
+    "nodemon": "^1.12.0",
+    "recharts": "^1.0.0-beta.10"
   }
 }

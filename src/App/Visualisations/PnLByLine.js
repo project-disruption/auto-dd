@@ -2,12 +2,13 @@ import React from "react";
 import moment from "moment";
 import request from 'superagent'
 import TimeSeriesPlot from "./TimeSeriesPlot";
+import LineChartPlot from "./LineChart";
 
 export default class PnlByLine extends React.Component {
   state = {
     lineByMonth: [],
-    fromDate: moment().format("YYYY-MM-DD"),
-    toDate: moment().format("YYYY-MM-DD"),
+    fromDate: moment().endOf('month').subtract(1, "years").format("YYYY-MM-DD"),
+    toDate: moment().endOf('month').format("YYYY-MM-DD"),
     line: 'Total Income'
   };
   // componentDidMount () {
@@ -15,7 +16,6 @@ export default class PnlByLine extends React.Component {
   // }
   getData = () => {
     const { fromDate, toDate, line } = this.state
-    console.log(this.state)
     request.get('/profitandlossbyline')
       .query({ fromDate, toDate, line })
       .then((response) => {
@@ -36,15 +36,7 @@ export default class PnlByLine extends React.Component {
         <input name="fromDate" type="text" value={this.state.fromDate} onChange={this.handleChange}/>
         <input name="toDate" type="text" value={this.state.toDate} onChange={this.handleChange}/>
         <button onClick={this.getData}>Submit</button>
-        <TimeSeriesPlot
-          data={this.state.lineByMonth}
-          height={800}
-          margin={100}
-          selectX={datum => moment(datum.date).toDate()}
-          selectY={datum => datum.value}
-          width={800}
-          setTooltip={this.setTooltip}
-        />
+        <LineChartPlot data={this.state.lineByMonth} />
       </div>
     );
   }

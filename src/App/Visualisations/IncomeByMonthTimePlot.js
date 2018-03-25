@@ -6,7 +6,7 @@ import TimeSeriesPlot from "./TimeSeriesPlot";
 export default class IncomeByMonthTimePlot extends React.Component {
   state = {
     incomeByMonth: [],
-    fromDate: moment().format("YYYY-MM-DD"),
+    fromDate: moment().subtract(1, "years").format("YYYY-MM-DD"),
     toDate: moment().format("YYYY-MM-DD"),
     line: 'Income'
 
